@@ -16,6 +16,7 @@ public class Main4Activity extends AppCompatActivity {
     Button btEditar;
     Button btlist;
     Button btCancelar;
+    Button btExcluir;
     boolean ehedicao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class Main4Activity extends AppCompatActivity {
         btlist = (Button)findViewById(R.id.btListcl);
         btCancelar = (Button) findViewById(R.id.button2);
         pessoaclicada = (Pessoa) getIntent().getSerializableExtra( "pessoaclicada" );
+        btExcluir = (Button) findViewById(R.id.button3);
 
         btEditar = (Button) findViewById(R.id.button);
         if ( pessoaclicada != null ) {
@@ -65,6 +67,19 @@ public class Main4Activity extends AppCompatActivity {
                 }
             }
         });
+
+        btExcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getBaseContext());
+                SQLiteDatabase db = mDbHelper.getWritableDatabase();
+                String ids = Integer.toString(pessoaclicada.getCodigo());
+                String[] args = { ids };
+                db.delete("CLIENTES", "COD_CLIENTE=?", args  );
+                finish();
+            }
+        });
+
         btCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
