@@ -64,7 +64,7 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mprogressDialog = ProgressDialog.show(Main3Activity.this, "Aguarde", "Verificando Produto(s)...");
+                mprogressDialog = ProgressDialog.show(Main3Activity.this, "Aguarde", "Verificando Cliente(s)...");
                 new Thread(new Runnable() {
                     Handler handler = new Handler();
                     List<Pessoa> listadepessoas = new ArrayList<Pessoa>();
@@ -91,6 +91,7 @@ public class Main3Activity extends AppCompatActivity {
                                             proximo=c.moveToNext();
                                         }
                                     }
+                                    ////
                                     if (listadepessoas.size() > 0)
                                     {
                                         ArrayAdapter<Pessoa> adapter = new ArrayAdapter<Pessoa>(
